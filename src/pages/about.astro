@@ -1,0 +1,259 @@
+---
+// About Us Page - Artist Bio
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/jpeg" href="/logo-cropped.jpg" />
+		<link rel="shortcut icon" type="image/jpeg" href="/logo-cropped.jpg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>About Us - Cognasi Glass Co.</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar">
+			<div class="container">
+				<div class="nav-wrapper">
+					<a href="/logo" class="logo">
+						<img src="/logo-cropped.jpg" alt="Cognasi Glass Co." />
+					</a>
+					<ul class="nav-links">
+						<li><a href="/">Home</a></li>
+						<li><a href="/shop">Shop</a></li>
+						<li><a href="/about" class="active">About Us</a></li>
+						<li>
+							<button class="search-btn" aria-label="Search">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<circle cx="11" cy="11" r="8"></circle>
+									<path d="m21 21-4.35-4.35"></path>
+								</svg>
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- About Section -->
+		<section class="about">
+			<div class="container">
+				<h1 class="page-title">About the Artist</h1>
+				<div class="about-content">
+					<div class="bio-text">
+						<p>
+							Cortny Cognasi grew up in West Texas and attended Texas A&M University in College Station before calling Austin home in 2017. She began creating stained glass art in 2024 and now works out of her garage-turned-home studio. 
+						</p>
+						<p>
+							Although Cortny works in healthcare tech by day, she's passionate about learning and pushing her limits with glass—her creative obsession. Her pieces feature geometric designs, animals, flowers, and other natural themes, often combining multiple glass techniques in unique ways to create art that is truly original.
+						</p>
+						<p>
+							Find her on Instagram at <a href="https://instagram.com/Cognasi.Glass" target="_blank" rel="noopener noreferrer">@Cognasi.Glass</a> to follow her works in progress—and for the occasional photo of her dogs, Conrad and Steve.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			:root {
+				--primary-color: #8B4513;
+				--secondary-color: #D4A574;
+				--accent-color: #CD853F;
+				--text-dark: #2C1810;
+				--text-light: #6B5D54;
+				--bg-light: #FAF9F7;
+				--white: #FFFFFF;
+			}
+
+			body {
+				font-family: 'Montserrat', sans-serif;
+				color: var(--text-dark);
+				background-color: var(--bg-light);
+				line-height: 1.6;
+			}
+
+			h1, h2, h3 {
+				font-family: 'Playfair Display', serif;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+			}
+
+			/* Navigation */
+			.navbar {
+				background: var(--white);
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+				position: sticky;
+				top: 0;
+				z-index: 100;
+			}
+
+			.nav-wrapper {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0.5rem 0;
+			}
+
+			.logo img {
+				height: 60px;
+				display: block;
+			}
+
+			.nav-links {
+				display: flex;
+				list-style: none;
+				gap: 2.5rem;
+				align-items: center;
+			}
+
+			.nav-links a {
+				text-decoration: none;
+				color: var(--text-dark);
+				font-weight: 500;
+				font-size: 0.95rem;
+				letter-spacing: 0.5px;
+				transition: color 0.3s ease;
+				position: relative;
+			}
+
+			.nav-links a:hover,
+			.nav-links a.active {
+				color: var(--primary-color);
+			}
+
+			.nav-links a.active::after {
+				content: '';
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				right: 0;
+				height: 2px;
+				background: var(--primary-color);
+			}
+
+			.search-btn {
+				background: none;
+				border: none;
+				color: var(--text-dark);
+				cursor: pointer;
+				padding: 0.5rem;
+				display: flex;
+				align-items: center;
+				transition: color 0.3s ease;
+			}
+
+			.search-btn:hover {
+				color: var(--primary-color);
+			}
+
+			/* About Section */
+			.about {
+				padding: 4rem 0 6rem;
+				min-height: calc(100vh - 80px);
+			}
+
+			.page-title {
+				text-align: center;
+				font-size: 3.5rem;
+				margin-bottom: 3rem;
+				color: var(--text-dark);
+			}
+
+			.about-content {
+				max-width: 800px;
+				margin: 0 auto;
+			}
+
+			.bio-text {
+				background: var(--white);
+				padding: 3rem;
+				border-radius: 12px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			.bio-text p {
+				font-size: 1.2rem;
+				line-height: 1.8;
+				color: var(--text-dark);
+				margin-bottom: 1.5rem;
+			}
+
+			.bio-text p:last-child {
+				margin-bottom: 0;
+			}
+
+			.bio-text a {
+				color: var(--primary-color);
+				text-decoration: none;
+				font-weight: 600;
+				transition: color 0.3s ease;
+			}
+
+			.bio-text a:hover {
+				color: var(--accent-color);
+				text-decoration: underline;
+			}
+
+			/* Responsive Design */
+			@media (max-width: 768px) {
+				.nav-links {
+					gap: 1.5rem;
+				}
+
+				.page-title {
+					font-size: 2.5rem;
+				}
+
+				.bio-text {
+					padding: 2rem;
+				}
+
+				.bio-text p {
+					font-size: 1.1rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.container {
+					padding: 0 1rem;
+				}
+
+				.nav-links {
+					gap: 1rem;
+					font-size: 0.85rem;
+				}
+
+				.logo img {
+					height: 50px;
+				}
+
+				.page-title {
+					font-size: 2rem;
+				}
+
+				.bio-text {
+					padding: 1.5rem;
+				}
+
+				.bio-text p {
+					font-size: 1rem;
+				}
+			}
+		</style>
+	</body>
+</html>
