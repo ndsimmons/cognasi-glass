@@ -465,94 +465,115 @@
 	</style>
 
 	<script>
-		// Hero Carousel
-		const slides = document.querySelectorAll('.carousel-slide');
-		const indicators = document.querySelectorAll('.indicator');
-		const carousel = document.querySelector('.hero-carousel');
-		let currentSlide = 0;
-		const slideInterval = 5000; // 5 seconds
+		document.addEventListener('DOMContentLoaded', () => {
+			// Hero Carousel
+			const slides = document.querySelectorAll('.carousel-slide');
+			const indicators = document.querySelectorAll('.indicator');
+			const carousel = document.querySelector('.hero-carousel');
+			let currentSlide = 0;
+			const slideInterval = 5000; // 5 seconds
 
-		function showSlide(index) {
-			slides.forEach(slide => slide.classList.remove('active'));
-			indicators.forEach(indicator => indicator.classList.remove('active'));
-			
-			slides[index].classList.add('active');
-			indicators[index].classList.add('active');
-		}
+			function showSlide(index) {
+				slides.forEach(slide => slide.classList.remove('active'));
+				indicators.forEach(indicator => indicator.classList.remove('active'));
+				
+				slides[index].classList.add('active');
+				indicators[index].classList.add('active');
+			}
 
-		function nextSlide() {
-			currentSlide = (currentSlide + 1) % slides.length;
-			showSlide(currentSlide);
-		}
-
-		function prevSlide() {
-			currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-			showSlide(currentSlide);
-		}
-
-		function resetAutoplay() {
-			clearInterval(autoplay);
-			autoplay = setInterval(nextSlide, slideInterval);
-		}
-
-		// Auto-advance slides
-		let autoplay = setInterval(nextSlide, slideInterval);
-
-		// Manual navigation with indicators
-		indicators.forEach((indicator, index) => {
-			indicator.addEventListener('click', () => {
-				currentSlide = index;
+			function nextSlide() {
+				currentSlide = (currentSlide + 1) % slides.length;
 				showSlide(currentSlide);
-				resetAutoplay();
+			}
+
+			function prevSlide() {
+				currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+				showSlide(currentSlide);
+			}
+
+			function resetAutoplay() {
+				clearInterval(autoplay);
+				autoplay = setInterval(nextSlide, slideInterval);
+			}
+
+			// Auto-advance slides
+			let autoplay = setInterval(nextSlide, slideInterval);
+
+			// Manual navigation with indicators
+			indicators.forEach((indicator, index) => {
+				indicator.addEventListener('click', () => {
+					currentSlide = index;
+					showSlide(currentSlide);
+					resetAutoplay();
+				});
 			});
-		});
 
-		// Keyboard navigation
-		document.addEventListener('keydown', (e) => {
-			if (e.key === 'ArrowLeft') {
-				prevSlide();
-				resetAutoplay();
-			} else if (e.key === 'ArrowRight') {
-				nextSlide();
-				resetAutoplay();
-			}
-		});
-
-		// Touch/Swipe support for mobile
-		let touchStartX = 0;
-		let touchEndX = 0;
-		let touchStartY = 0;
-		let touchEndY = 0;
-		const swipeThreshold = 50; // Minimum distance for a swipe
-
-		carousel.addEventListener('touchstart', (e) => {
-			touchStartX = e.changedTouches[0].screenX;
-			touchStartY = e.changedTouches[0].screenY;
-		}, { passive: true });
-
-		carousel.addEventListener('touchend', (e) => {
-			touchEndX = e.changedTouches[0].screenX;
-			touchEndY = e.changedTouches[0].screenY;
-			handleSwipe();
-		}, { passive: true });
-
-		function handleSwipe() {
-			const swipeDistanceX = touchEndX - touchStartX;
-			const swipeDistanceY = Math.abs(touchEndY - touchStartY);
-			
-			// Only trigger swipe if horizontal movement is greater than vertical
-			// This prevents interfering with page scrolling
-			if (Math.abs(swipeDistanceX) > swipeThreshold && Math.abs(swipeDistanceX) > swipeDistanceY) {
-				if (swipeDistanceX > 0) {
-					// Swiped right - go to previous slide
+			// Keyboard navigation
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'ArrowLeft') {
 					prevSlide();
-				} else {
-					// Swiped left - go to next slide
+					resetAutoplay();
+				} else if (e.key === 'ArrowRight') {
 					nextSlide();
+					resetAutoplay();
 				}
-				resetAutoplay();
+			});
+
+			// Touch/Swipe support for mobile
+			let touchStartX = 0;
+			let touchEndX = 0;
+			let touchStartY = 0;
+			let touchEndY = 0;
+			const swipeThreshold = 50; // Minimum distance for a swipe
+
+			if (carousel) {
+				carousel.addEventListener('touchstart', (e) => {
+					touchStartX = e.touches[0].clientX;
+					touchStartY = e.touches[0].clientY;
+				}, { passive: true });
+
+				carousel.addEventListener('touchmove', (e) => {
+					if (!touchStartX || !touchStartY) {
+						return;
+					}
+					
+					touchEndX = e.touches[0].clientX;
+					touchEndY = e.touches[0].clientY;
+				}, { passive: true });
+
+				carousel.addEventListener('touchend', (e) => {
+					if (!touchStartX || !touchStartY) {
+						return;
+					}
+					
+					handleSwipe();
+					
+					// Reset values
+					touchStartX = 0;
+					touchStartY = 0;
+					touchEndX = 0;
+					touchEndY = 0;
+				}, { passive: true });
+
+				function handleSwipe() {
+					const swipeDistanceX = touchEndX - touchStartX;
+					const swipeDistanceY = Math.abs(touchEndY - touchStartY);
+					
+					// Only trigger swipe if horizontal movement is greater than vertical
+					// This prevents interfering with page scrolling
+					if (Math.abs(swipeDistanceX) > swipeThreshold && Math.abs(swipeDistanceX) > swipeDistanceY) {
+						if (swipeDistanceX > 0) {
+							// Swiped right - go to previous slide
+							prevSlide();
+						} else {
+							// Swiped left - go to next slide
+							nextSlide();
+						}
+						resetAutoplay();
+					}
+				}
 			}
-		}
+		});
 	</script>
 </body>
 </html>
