@@ -354,6 +354,20 @@
 			const slideInterval = 5000; // 5 seconds
 			let isTransitioning = false;
 
+			// Preload all carousel images
+			function preloadImages() {
+				slides.forEach((slide) => {
+					const img = slide.querySelector('img');
+					if (img && img.src) {
+						const preloadImg = new Image();
+						preloadImg.src = img.src;
+					}
+				});
+			}
+
+			// Start preloading immediately
+			preloadImages();
+
 			function showSlide(index) {
 				if (isTransitioning) return;
 				
