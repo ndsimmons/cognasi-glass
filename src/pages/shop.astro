@@ -55,9 +55,18 @@ import { products, formatPrice } from '../data/products';
 			<div class="container">
 				<h1 class="page-title">Our Collection</h1>
 				<p class="page-subtitle">Handcrafted stained glass pieces, each one unique and made with love</p>
+				
+				<!-- Category Filter -->
+				<div class="filter-container">
+					<button class="filter-btn active" data-category="all">All</button>
+					<button class="filter-btn" data-category="pieces">Pieces</button>
+					<button class="filter-btn" data-category="glass-sheets">Glass Sheets</button>
+					<button class="filter-btn" data-category="supplies">Supplies</button>
+				</div>
+
 				<div class="gallery-grid">
 					{products.map(product => (
-						<div class="gallery-item">
+						<div class="gallery-item" data-category={product.category}>
 							<div class="item-image">
 								<img src={product.image} alt={product.description} />
 							</div>
@@ -263,7 +272,39 @@ import { products, formatPrice } from '../data/products';
 				text-align: center;
 				font-size: 1.2rem;
 				color: var(--text-light);
-				margin-bottom: 4rem;
+				margin-bottom: 2rem;
+			}
+
+			/* Category Filter */
+			.filter-container {
+				display: flex;
+				justify-content: center;
+				gap: 1rem;
+				margin-bottom: 3rem;
+				flex-wrap: wrap;
+			}
+
+			.filter-btn {
+				padding: 0.75rem 2rem;
+				border: 2px solid var(--primary-color);
+				background: var(--white);
+				color: var(--primary-color);
+				font-size: 1rem;
+				font-weight: 600;
+				border-radius: 50px;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				text-transform: capitalize;
+			}
+
+			.filter-btn:hover {
+				background: var(--bg-light);
+				transform: translateY(-2px);
+			}
+
+			.filter-btn.active {
+				background: var(--primary-color);
+				color: var(--white);
 			}
 
 			.gallery-grid {
@@ -273,11 +314,18 @@ import { products, formatPrice } from '../data/products';
 			}
 
 			.gallery-item {
+				transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+			}
+
+			.gallery-item.hidden {
+				display: none;
+			}
+
+			.gallery-item {
 				background: var(--white);
 				border-radius: 8px;
 				overflow: hidden;
 				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
 				cursor: pointer;
 			}
 
@@ -593,44 +641,69 @@ import { products, formatPrice } from '../data/products';
 					name: 'Glass Circle Art',
 					price: 15000,
 					image: '/donut-piece.jpg',
-					description: 'Handmade stained glass circle piece'
+					description: 'Handmade stained glass circle piece',
+					category: 'pieces'
 				},
 				{
 					id: 'stained-glass-creation',
 					name: 'Stained Glass Creation',
 					price: 18000,
 					image: '/IMG_4033_cropped.jpeg',
-					description: 'Handmade stained glass piece'
+					description: 'Handmade stained glass piece',
+					category: 'pieces'
 				},
 				{
 					id: 'glass-art-piece',
 					name: 'Glass Art Piece',
 					price: 22000,
 					image: '/IMG_4115.JPG',
-					description: 'Handmade stained glass piece'
+					description: 'Handmade stained glass piece',
+					category: 'pieces'
 				},
 				{
 					id: 'artistic-glass-work',
 					name: 'Artistic Glass Work',
 					price: 19500,
 					image: '/IMG_4447.jpg',
-					description: 'Handmade stained glass piece'
+					description: 'Handmade stained glass piece',
+					category: 'pieces'
 				},
 				{
 					id: 'glass-masterpiece',
 					name: 'Glass Masterpiece',
 					price: 25000,
 					image: '/IMG_7793.jpg',
-					description: 'Handmade stained glass piece'
+					description: 'Handmade stained glass piece',
+					category: 'pieces'
 				},
 				{
 					id: 'glass-rose',
 					name: 'Glass Rose',
 					price: 17500,
 					image: '/IMG_8510_cropped.jpeg',
-					description: 'Handmade stained glass rose'
+					description: 'Handmade stained glass rose',
+					category: 'pieces'
 				}
 			];
+
+			// Category Filter
+			function filterProducts(category) {
+				const items = document.querySelectorAll('.gallery-item');
+				const filterBtns = document.querySelectorAll('.filter-btn');
+				
+				// Update active button
+				filterBtns.forEach(btn => btn.classList.remove('active'));
+				document.querySelector(`[data-category="${category}"]`).classList.add('active');
+				
+				// Show/hide items
+				items.forEach(item => {
+					if (category === 'all' || item.dataset.category === category) {
+						item.classList.remove('hidden');
+					} else {
+						item.classList.add('hidden');
+					}
+				});
+			}
 
 			// Cart state
 			let cart = [];
@@ -780,6 +853,14 @@ import { products, formatPrice } from '../data/products';
 			// Event listeners
 			document.addEventListener('DOMContentLoaded', () => {
 				loadCart();
+
+				// Category filter buttons
+				document.querySelectorAll('.filter-btn').forEach(btn => {
+					btn.addEventListener('click', (e) => {
+						const category = e.target.dataset.category;
+						filterProducts(category);
+					});
+				});
 
 				// Add to cart buttons
 				document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
