@@ -43,10 +43,7 @@
 		<section class="about">
 			<div class="container">
 				<h1 class="page-title">About the Artist</h1>
-				<div class="about-content">
-					<div class="artist-image">
-						<img src="/IMG_7793.jpg" alt="Cortny Cognasi - Artist" />
-					</div>
+				<div class="about-card">
 					<div class="bio-text">
 						<p>
 							Cortny Cognasi grew up in West Texas and attended Texas A&M University in College Station before calling Austin home in 2017. She began creating stained glass art in 2024 and now works out of her garage-turned-home studio. 
@@ -57,6 +54,9 @@
 						<p>
 							Find her on Instagram at <a href="https://instagram.com/Cognasi.Glass" target="_blank" rel="noopener noreferrer">@Cognasi.Glass</a> to follow her works in progress—and for the occasional photo of her dogs, Conrad and Steve.
 						</p>
+					</div>
+					<div class="artist-image">
+						<img src="/IMG_7793.jpg" alt="Cortny Cognasi - Artist" />
 					</div>
 				</div>
 			</div>
@@ -177,33 +177,30 @@
 				color: var(--text-dark);
 			}
 
-			.about-content {
+			.about-card {
 				max-width: 1100px;
 				margin: 0 auto;
+				background: var(--white);
+				border-radius: 12px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+				padding: 3rem;
 				display: grid;
-				grid-template-columns: 400px 1fr;
+				grid-template-columns: 1fr 400px;
 				gap: 3rem;
 				align-items: start;
 			}
 
-			.artist-image {
-				position: sticky;
-				top: 100px;
+			.bio-text {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 			}
 
 			.artist-image img {
 				width: 100%;
 				height: auto;
-				border-radius: 12px;
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+				border-radius: 8px;
 				object-fit: cover;
-			}
-
-			.bio-text {
-				background: var(--white);
-				padding: 3rem;
-				border-radius: 12px;
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 			}
 
 			.bio-text p {
@@ -231,13 +228,13 @@
 
 			/* Responsive Design */
 			@media (max-width: 968px) {
-				.about-content {
+				.about-card {
 					grid-template-columns: 1fr;
 					gap: 2rem;
 				}
 
 				.artist-image {
-					position: static;
+					order: -1;
 					max-width: 500px;
 					margin: 0 auto;
 				}
@@ -252,7 +249,7 @@
 					font-size: 2.5rem;
 				}
 
-				.bio-text {
+				.about-card {
 					padding: 2rem;
 				}
 
@@ -283,7 +280,7 @@
 					font-size: 2rem;
 				}
 
-				.bio-text {
+				.about-card {
 					padding: 1.5rem;
 				}
 
