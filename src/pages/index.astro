@@ -213,11 +213,13 @@
 			width: 100%;
 			height: 100%;
 			opacity: 0;
-			transition: opacity 1s ease-in-out;
+			transition: opacity 0.5s ease-in-out;
+			pointer-events: none;
 		}
 
 		.carousel-slide.active {
 			opacity: 1;
+			pointer-events: auto;
 		}
 
 		.carousel-slide img {
@@ -350,23 +352,36 @@
 			const carousel = document.querySelector('.hero-carousel');
 			let currentSlide = 0;
 			const slideInterval = 5000; // 5 seconds
+			let isTransitioning = false;
 
 			function showSlide(index) {
+				if (isTransitioning) return;
+				
+				isTransitioning = true;
 				slides.forEach(slide => slide.classList.remove('active'));
 				indicators.forEach(indicator => indicator.classList.remove('active'));
 				
 				slides[index].classList.add('active');
 				indicators[index].classList.add('active');
+				
+				// Reset transition lock after animation completes
+				setTimeout(() => {
+					isTransitioning = false;
+				}, 500); // Match CSS transition time
 			}
 
 			function nextSlide() {
-				currentSlide = (currentSlide + 1) % slides.length;
-				showSlide(currentSlide);
+				if (!isTransitioning) {
+					currentSlide = (currentSlide + 1) % slides.length;
+					showSlide(currentSlide);
+				}
 			}
 
 			function prevSlide() {
-				currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-				showSlide(currentSlide);
+				if (!isTransitioning) {
+					currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+					showSlide(currentSlide);
+				}
 			}
 
 			function resetAutoplay() {
