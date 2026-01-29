@@ -79,57 +79,6 @@
 		</div>
 	</section>
 
-		<!-- Gallery Section -->
-		<section class="gallery">
-			<div class="container">
-				<h2 class="section-title">Featured Pieces</h2>
-				<div class="gallery-grid">
-					<div class="gallery-item">
-						<div class="item-image">
-							<img src="https://images.unsplash.com/photo-1582564286939-400a311013a2?w=600&q=80" alt="Floral stained glass panel" />
-						</div>
-						<h3>Sunset Bloom</h3>
-						<p class="price">$385</p>
-					</div>
-					<div class="gallery-item">
-						<div class="item-image">
-							<img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80" alt="Geometric stained glass art" />
-						</div>
-						<h3>Morning Light</h3>
-						<p class="price">$425</p>
-					</div>
-					<div class="gallery-item">
-						<div class="item-image">
-							<img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80" alt="Circular stained glass window" />
-						</div>
-						<h3>Garden Dreams</h3>
-						<p class="price">$560</p>
-					</div>
-					<div class="gallery-item">
-						<div class="item-image">
-							<img src="https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?w=600&q=80" alt="Abstract stained glass piece" />
-						</div>
-						<h3>Autumn Rays</h3>
-						<p class="price">$340</p>
-					</div>
-					<div class="gallery-item">
-						<div class="item-image">
-							<img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&q=80" alt="Nature inspired stained glass" />
-						</div>
-						<h3>Crystal Forest</h3>
-						<p class="price">$495</p>
-					</div>
-					<div class="gallery-item">
-						<div class="item-image">
-							<img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&q=80" alt="Elegant stained glass design" />
-						</div>
-						<h3>Twilight Petals</h3>
-						<p class="price">$410</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
 		<style>
 			* {
 				margin: 0;
@@ -362,68 +311,6 @@
 				background: var(--bg-light);
 			}
 
-			/* Gallery Section */
-			.gallery {
-				padding: 6rem 0 4rem;
-			}
-
-			.section-title {
-				text-align: center;
-				font-size: 3rem;
-				margin-bottom: 3rem;
-				color: var(--text-dark);
-			}
-
-			.gallery-grid {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 2.5rem;
-			}
-
-			.gallery-item {
-				background: var(--white);
-				border-radius: 8px;
-				overflow: hidden;
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				cursor: pointer;
-			}
-
-			.gallery-item:hover {
-				transform: translateY(-8px);
-				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-			}
-
-			.item-image {
-				width: 100%;
-				height: 300px;
-				overflow: hidden;
-			}
-
-			.item-image img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				transition: transform 0.5s ease;
-			}
-
-			.gallery-item:hover .item-image img {
-				transform: scale(1.1);
-			}
-
-			.gallery-item h3 {
-				padding: 1.5rem 1.5rem 0.5rem;
-				font-size: 1.4rem;
-				color: var(--text-dark);
-			}
-
-			.price {
-				padding: 0 1.5rem 1.5rem;
-				font-size: 1.2rem;
-				font-weight: 600;
-				color: var(--primary-color);
-			}
-
 			/* Responsive Design */
 			@media (max-width: 768px) {
 				.nav-links {
@@ -436,15 +323,6 @@
 
 				.hero-subtitle {
 					font-size: 1rem;
-				}
-
-				.gallery-grid {
-					grid-template-columns: 1fr;
-					gap: 2rem;
-				}
-
-				.section-title {
-					font-size: 2rem;
 				}
 			}
 
