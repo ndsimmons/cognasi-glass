@@ -43,16 +43,16 @@
 	<section class="hero">
 		<div class="hero-content">
 			<h1 class="hero-title">Handmade with love</h1>
-			<p class="hero-subtitle">Each piece tells a story, crafted with passion and decades of artistry</p>
+			<p class="hero-subtitle">Each piece tells a story, crafted with passion and one of a kind artistry</p>
 			<a href="/shop" class="cta-button">Explore Our Collection</a>
 		</div>
 		<div class="hero-carousel">
 			<div class="carousel-track">
 				<div class="carousel-slide active">
-					<img src="/IMG_1170.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
+					<img src="/IMG_1170_cropped.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
 				</div>
 				<div class="carousel-slide">
-					<img src="/IMG_4033.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
+					<img src="/IMG_4033_cropped.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
 				</div>
 				<div class="carousel-slide">
 					<img src="/IMG_4115.JPG" alt="Cognasi Glass Co. handmade stained glass piece" />
@@ -64,7 +64,7 @@
 					<img src="/IMG_7793.jpg" alt="Cognasi Glass Co. handmade stained glass piece" />
 				</div>
 				<div class="carousel-slide">
-					<img src="/IMG_8510.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
+					<img src="/IMG_8510_cropped.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
 				</div>
 			</div>
 			<div class="image-overlay"></div>
@@ -283,7 +283,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: linear-gradient(135deg, rgba(139, 69, 19, 0.7) 0%, rgba(212, 165, 116, 0.5) 100%);
+			background: linear-gradient(135deg, rgba(139, 69, 19, 0.49) 0%, rgba(212, 165, 116, 0.35) 100%);
 			z-index: 2;
 		}
 
@@ -484,10 +484,15 @@
 			showSlide(currentSlide);
 		}
 
+		function prevSlide() {
+			currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+			showSlide(currentSlide);
+		}
+
 		// Auto-advance slides
 		let autoplay = setInterval(nextSlide, slideInterval);
 
-		// Manual navigation
+		// Manual navigation with indicators
 		indicators.forEach((indicator, index) => {
 			indicator.addEventListener('click', () => {
 				currentSlide = index;
@@ -497,6 +502,21 @@
 				clearInterval(autoplay);
 				autoplay = setInterval(nextSlide, slideInterval);
 			});
+		});
+
+		// Keyboard navigation
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowLeft') {
+				prevSlide();
+				// Reset autoplay timer
+				clearInterval(autoplay);
+				autoplay = setInterval(nextSlide, slideInterval);
+			} else if (e.key === 'ArrowRight') {
+				nextSlide();
+				// Reset autoplay timer
+				clearInterval(autoplay);
+				autoplay = setInterval(nextSlide, slideInterval);
+			}
 		});
 	</script>
 </body>
