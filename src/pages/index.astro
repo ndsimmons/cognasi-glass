@@ -39,18 +39,45 @@
 			</div>
 		</nav>
 
-		<!-- Hero Section -->
-		<section class="hero">
-			<div class="hero-content">
-				<h1 class="hero-title">Handmade with love</h1>
-				<p class="hero-subtitle">Each piece tells a story, crafted with passion and decades of artistry</p>
-				<a href="/shop" class="cta-button">Explore Our Collection</a>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-content">
+			<h1 class="hero-title">Handmade with love</h1>
+			<p class="hero-subtitle">Each piece tells a story, crafted with passion and decades of artistry</p>
+			<a href="/shop" class="cta-button">Explore Our Collection</a>
+		</div>
+		<div class="hero-carousel">
+			<div class="carousel-track">
+				<div class="carousel-slide active">
+					<img src="/IMG_1170.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
+				</div>
+				<div class="carousel-slide">
+					<img src="/IMG_4033.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
+				</div>
+				<div class="carousel-slide">
+					<img src="/IMG_4115.JPG" alt="Cognasi Glass Co. handmade stained glass piece" />
+				</div>
+				<div class="carousel-slide">
+					<img src="/IMG_4447.jpg" alt="Cognasi Glass Co. handmade stained glass piece" />
+				</div>
+				<div class="carousel-slide">
+					<img src="/IMG_7793.jpg" alt="Cognasi Glass Co. handmade stained glass piece" />
+				</div>
+				<div class="carousel-slide">
+					<img src="/IMG_8510.jpeg" alt="Cognasi Glass Co. handmade stained glass piece" />
+				</div>
 			</div>
-			<div class="hero-image">
-				<img src="https://images.unsplash.com/photo-1582564286939-400a311013a2?w=800&q=80" alt="Beautiful handmade stained glass piece" />
-				<div class="image-overlay"></div>
+			<div class="image-overlay"></div>
+			<div class="carousel-indicators">
+				<button class="indicator active" data-slide="0" aria-label="Slide 1"></button>
+				<button class="indicator" data-slide="1" aria-label="Slide 2"></button>
+				<button class="indicator" data-slide="2" aria-label="Slide 3"></button>
+				<button class="indicator" data-slide="3" aria-label="Slide 4"></button>
+				<button class="indicator" data-slide="4" aria-label="Slide 5"></button>
+				<button class="indicator" data-slide="5" aria-label="Slide 6"></button>
 			</div>
-		</section>
+		</div>
+	</section>
 
 		<!-- Gallery Section -->
 		<section class="gallery">
@@ -205,48 +232,98 @@
 				color: var(--primary-color);
 			}
 
-			/* Hero Section */
-			.hero {
-				position: relative;
-				height: 85vh;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
-			}
+		/* Hero Section */
+		.hero {
+			position: relative;
+			height: 85vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
 
-			.hero-image {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: 1;
-			}
+		.hero-carousel {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+		}
 
-			.hero-image img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
+		.carousel-track {
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
 
-			.image-overlay {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(135deg, rgba(139, 69, 19, 0.7) 0%, rgba(212, 165, 116, 0.5) 100%);
-			}
+		.carousel-slide {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 1s ease-in-out;
+		}
 
-			.hero-content {
-				position: relative;
-				z-index: 2;
-				text-align: center;
-				color: var(--white);
-				max-width: 800px;
-				padding: 2rem;
-			}
+		.carousel-slide.active {
+			opacity: 1;
+		}
+
+		.carousel-slide img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.image-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(135deg, rgba(139, 69, 19, 0.7) 0%, rgba(212, 165, 116, 0.5) 100%);
+			z-index: 2;
+		}
+
+		.carousel-indicators {
+			position: absolute;
+			bottom: 2rem;
+			left: 50%;
+			transform: translateX(-50%);
+			display: flex;
+			gap: 0.75rem;
+			z-index: 3;
+		}
+
+		.indicator {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			border: 2px solid var(--white);
+			background: transparent;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			padding: 0;
+		}
+
+		.indicator:hover {
+			background: rgba(255, 255, 255, 0.5);
+		}
+
+		.indicator.active {
+			background: var(--white);
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 4;
+			text-align: center;
+			color: var(--white);
+			max-width: 800px;
+			padding: 2rem;
+		}
 
 			.hero-title {
 				font-size: 4.5rem;
@@ -384,7 +461,43 @@
 			.logo img {
 				height: 50px;
 			}
-			}
-		</style>
-	</body>
+		}
+	</style>
+
+	<script>
+		// Hero Carousel
+		const slides = document.querySelectorAll('.carousel-slide');
+		const indicators = document.querySelectorAll('.indicator');
+		let currentSlide = 0;
+		const slideInterval = 5000; // 5 seconds
+
+		function showSlide(index) {
+			slides.forEach(slide => slide.classList.remove('active'));
+			indicators.forEach(indicator => indicator.classList.remove('active'));
+			
+			slides[index].classList.add('active');
+			indicators[index].classList.add('active');
+		}
+
+		function nextSlide() {
+			currentSlide = (currentSlide + 1) % slides.length;
+			showSlide(currentSlide);
+		}
+
+		// Auto-advance slides
+		let autoplay = setInterval(nextSlide, slideInterval);
+
+		// Manual navigation
+		indicators.forEach((indicator, index) => {
+			indicator.addEventListener('click', () => {
+				currentSlide = index;
+				showSlide(currentSlide);
+				
+				// Reset autoplay timer
+				clearInterval(autoplay);
+				autoplay = setInterval(nextSlide, slideInterval);
+			});
+		});
+	</script>
+</body>
 </html>
