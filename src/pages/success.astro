@@ -1,0 +1,246 @@
+---
+// Success Page - Order Confirmation
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Order Confirmed - Cognasi Glass Co.</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar">
+			<div class="container">
+				<div class="nav-wrapper">
+					<a href="/logo" class="logo">
+						<img src="/logo-cropped.jpg" alt="Cognasi Glass Co." />
+					</a>
+					<ul class="nav-links">
+						<li><a href="/">Home</a></li>
+						<li><a href="/shop">Shop</a></li>
+						<li><a href="/about">About Us</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Success Section -->
+		<section class="success">
+			<div class="container">
+				<div class="success-card">
+					<div class="success-icon">
+						<svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+							<polyline points="22 4 12 14.01 9 11.01"></polyline>
+						</svg>
+					</div>
+					<h1>Thank You for Your Order!</h1>
+					<p class="success-message">
+						Your payment has been successfully processed. We'll send you a confirmation email shortly with your order details.
+					</p>
+					<p class="success-note">
+						Your handcrafted stained glass piece will be carefully prepared and shipped to you soon.
+					</p>
+					<div class="success-actions">
+						<a href="/shop" class="btn btn-primary">Continue Shopping</a>
+						<a href="/" class="btn btn-secondary">Back to Home</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			:root {
+				--primary-color: #8B4513;
+				--secondary-color: #D4A574;
+				--accent-color: #CD853F;
+				--text-dark: #2C1810;
+				--text-light: #6B5D54;
+				--bg-light: #FAF9F7;
+				--white: #FFFFFF;
+				--success-color: #28a745;
+			}
+
+			body {
+				font-family: 'Montserrat', sans-serif;
+				color: var(--text-dark);
+				background-color: var(--bg-light);
+				line-height: 1.6;
+			}
+
+			h1, h2, h3 {
+				font-family: 'Playfair Display', serif;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+			}
+
+			/* Navigation */
+			.navbar {
+				background: var(--white);
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+				position: sticky;
+				top: 0;
+				z-index: 100;
+			}
+
+			.nav-wrapper {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0.5rem 0;
+			}
+
+			.logo img {
+				height: 60px;
+				display: block;
+			}
+
+			.nav-links {
+				display: flex;
+				list-style: none;
+				gap: 2.5rem;
+				align-items: center;
+			}
+
+			.nav-links a {
+				text-decoration: none;
+				color: var(--text-dark);
+				font-weight: 500;
+				font-size: 0.95rem;
+				letter-spacing: 0.5px;
+				transition: color 0.3s ease;
+			}
+
+			.nav-links a:hover {
+				color: var(--primary-color);
+			}
+
+			/* Success Section */
+			.success {
+				padding: 4rem 0 6rem;
+				min-height: calc(100vh - 80px);
+				display: flex;
+				align-items: center;
+			}
+
+			.success-card {
+				max-width: 600px;
+				margin: 0 auto;
+				background: var(--white);
+				border-radius: 12px;
+				padding: 3rem;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+				text-align: center;
+			}
+
+			.success-icon {
+				color: var(--success-color);
+				margin-bottom: 2rem;
+				display: flex;
+				justify-content: center;
+			}
+
+			.success-card h1 {
+				font-size: 2.5rem;
+				margin-bottom: 1.5rem;
+				color: var(--text-dark);
+			}
+
+			.success-message {
+				font-size: 1.1rem;
+				color: var(--text-light);
+				margin-bottom: 1rem;
+			}
+
+			.success-note {
+				font-size: 0.95rem;
+				color: var(--text-light);
+				font-style: italic;
+				margin-bottom: 2.5rem;
+			}
+
+			.success-actions {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+
+			.btn {
+				padding: 0.875rem 2rem;
+				border: none;
+				border-radius: 4px;
+				font-size: 1rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				text-decoration: none;
+				display: inline-block;
+			}
+
+			.btn-primary {
+				background: var(--primary-color);
+				color: var(--white);
+			}
+
+			.btn-primary:hover {
+				background: var(--text-dark);
+				transform: translateY(-2px);
+			}
+
+			.btn-secondary {
+				background: var(--white);
+				color: var(--primary-color);
+				border: 2px solid var(--primary-color);
+			}
+
+			.btn-secondary:hover {
+				background: var(--primary-color);
+				color: var(--white);
+			}
+
+			/* Responsive Design */
+			@media (max-width: 768px) {
+				.success-card {
+					padding: 2rem;
+				}
+
+				.success-card h1 {
+					font-size: 2rem;
+				}
+
+				.success-actions {
+					flex-direction: column;
+				}
+
+				.btn {
+					width: 100%;
+				}
+			}
+		</style>
+
+		<script>
+			// Clear cart after successful purchase
+			document.addEventListener('DOMContentLoaded', () => {
+				localStorage.removeItem('cart');
+			});
+		</script>
+	</body>
+</html>
