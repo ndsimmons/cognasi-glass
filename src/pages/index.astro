@@ -468,6 +468,7 @@
 		// Hero Carousel
 		const slides = document.querySelectorAll('.carousel-slide');
 		const indicators = document.querySelectorAll('.indicator');
+		const carousel = document.querySelector('.hero-carousel');
 		let currentSlide = 0;
 		const slideInterval = 5000; // 5 seconds
 
@@ -489,6 +490,11 @@
 			showSlide(currentSlide);
 		}
 
+		function resetAutoplay() {
+			clearInterval(autoplay);
+			autoplay = setInterval(nextSlide, slideInterval);
+		}
+
 		// Auto-advance slides
 		let autoplay = setInterval(nextSlide, slideInterval);
 
@@ -497,10 +503,7 @@
 			indicator.addEventListener('click', () => {
 				currentSlide = index;
 				showSlide(currentSlide);
-				
-				// Reset autoplay timer
-				clearInterval(autoplay);
-				autoplay = setInterval(nextSlide, slideInterval);
+				resetAutoplay();
 			});
 		});
 
@@ -508,16 +511,48 @@
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'ArrowLeft') {
 				prevSlide();
-				// Reset autoplay timer
-				clearInterval(autoplay);
-				autoplay = setInterval(nextSlide, slideInterval);
+				resetAutoplay();
 			} else if (e.key === 'ArrowRight') {
 				nextSlide();
-				// Reset autoplay timer
-				clearInterval(autoplay);
-				autoplay = setInterval(nextSlide, slideInterval);
+				resetAutoplay();
 			}
 		});
+
+		// Touch/Swipe support for mobile
+		let touchStartX = 0;
+		let touchEndX = 0;
+		let touchStartY = 0;
+		let touchEndY = 0;
+		const swipeThreshold = 50; // Minimum distance for a swipe
+
+		carousel.addEventListener('touchstart', (e) => {
+			touchStartX = e.changedTouches[0].screenX;
+			touchStartY = e.changedTouches[0].screenY;
+		}, { passive: true });
+
+		carousel.addEventListener('touchend', (e) => {
+			touchEndX = e.changedTouches[0].screenX;
+			touchEndY = e.changedTouches[0].screenY;
+			handleSwipe();
+		}, { passive: true });
+
+		function handleSwipe() {
+			const swipeDistanceX = touchEndX - touchStartX;
+			const swipeDistanceY = Math.abs(touchEndY - touchStartY);
+			
+			// Only trigger swipe if horizontal movement is greater than vertical
+			// This prevents interfering with page scrolling
+			if (Math.abs(swipeDistanceX) > swipeThreshold && Math.abs(swipeDistanceX) > swipeDistanceY) {
+				if (swipeDistanceX > 0) {
+					// Swiped right - go to previous slide
+					prevSlide();
+				} else {
+					// Swiped left - go to next slide
+					nextSlide();
+				}
+				resetAutoplay();
+			}
+		}
 	</script>
 </body>
 </html>
